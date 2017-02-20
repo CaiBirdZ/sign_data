@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `company_data` (
   PRIMARY KEY (`cpID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  sign_data.company_data 的数据：~0 rows (大约)
+-- 正在导出表  sign_data.company_data 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `company_data` DISABLE KEYS */;
 REPLACE INTO `company_data` (`cpID`, `cpName`, `cpPosLon`, `cpPosLat`, `cpKey`) VALUES
 	('sylg123', '沈阳理工大学', '123.49119902', '41.72686703', 'sasfassaww765432gyff');
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `rootuser` (
   CONSTRAINT `FK_rootUser_company_data` FOREIGN KEY (`cpID`) REFERENCES `company_data` (`cpID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  sign_data.rootuser 的数据：~0 rows (大约)
+-- 正在导出表  sign_data.rootuser 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `rootuser` DISABLE KEYS */;
 REPLACE INTO `rootuser` (`userNum`, `password`, `cpID`) VALUES
 	('root', 'chuang521', 'sylg123');
@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `sylg123sign_record` (
   `jobNo` varchar(16) NOT NULL,
   `signDate` varchar(20) NOT NULL,
   `signTime` varchar(20) NOT NULL,
-  `signOut` varchar(20) NOT NULL,
-  `remark` varchar(20) NOT NULL,
+  `signOut` varchar(20) DEFAULT NULL,
+  `remark` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`jobNo`,`signDate`),
   CONSTRAINT `FK_sylg123Sign_record_user_info` FOREIGN KEY (`jobNo`) REFERENCES `user_info` (`jobNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `user_info` (
   CONSTRAINT `FK_user_info_company_data` FOREIGN KEY (`cpID`) REFERENCES `company_data` (`cpID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  sign_data.user_info 的数据：~0 rows (大约)
+-- 正在导出表  sign_data.user_info 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
 REPLACE INTO `user_info` (`jobNo`, `password`, `emName`, `department`, `emTel`, `email`, `cpID`) VALUES
 	('sylg1403070131', '123456', '张闯', '信息院', '15734070718', '199509054032', 'sylg123');

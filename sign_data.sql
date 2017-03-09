@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `user_info` (
 -- 正在导出表  sign_data.user_info 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
 REPLACE INTO `user_info` (`jobNo`, `password`, `emName`, `department`, `emTel`, `email`, `cpID`) VALUES
-	('sylg1403070131', '123456', '张闯', '信息院', '15734070718', '199509054032', 'sylg123');
+	('sylg1403070131', '123456', '张闯', '信息院', '15734070718', '1995090@qq.com', 'sylg123');
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

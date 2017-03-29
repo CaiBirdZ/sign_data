@@ -19,16 +19,19 @@ USE `sign_data`;
 CREATE TABLE IF NOT EXISTS `company_data` (
   `cpID` varchar(50) NOT NULL,
   `cpName` varchar(50) NOT NULL,
-  `cpPosLon` varchar(50) NOT NULL,
-  `cpPosLat` varchar(50) NOT NULL,
+  `cpPosLon` varchar(50) DEFAULT NULL,
+  `cpPosLat` varchar(50) DEFAULT NULL,
   `cpKey` varchar(50) NOT NULL,
-  PRIMARY KEY (`cpID`)
+  `cpHQ` varchar(50) NOT NULL,
+  PRIMARY KEY (`cpID`),
+  KEY `cpKey` (`cpKey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  sign_data.company_data 的数据：~1 rows (大约)
+-- 正在导出表  sign_data.company_data 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `company_data` DISABLE KEYS */;
-REPLACE INTO `company_data` (`cpID`, `cpName`, `cpPosLon`, `cpPosLat`, `cpKey`) VALUES
-	('sylg123', '沈阳理工大学', '123.49119902', '41.72686703', 'sasfassaww765432gyff');
+REPLACE INTO `company_data` (`cpID`, `cpName`, `cpPosLon`, `cpPosLat`, `cpKey`, `cpHQ`) VALUES
+	('sylg123', '沈阳理工', '123.499402', '41.731463', 'sasfassaww765432gyff', '沈阳理工大学'),
+	('xx123456', '信息学院', NULL, NULL, 'sasfassaww765432gyff', '沈阳理工大学');
 /*!40000 ALTER TABLE `company_data` ENABLE KEYS */;
 
 
@@ -38,9 +41,9 @@ CREATE TABLE IF NOT EXISTS `err_record` (
   `signDate` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `signTime` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `signOut` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `afterTime` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `afterOut` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `marks` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `afterTime` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `afterOut` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `marks` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`jobNo`,`signDate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -53,16 +56,17 @@ CREATE TABLE IF NOT EXISTS `err_record` (
 CREATE TABLE IF NOT EXISTS `rootuser` (
   `userNum` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `cpID` varchar(50) NOT NULL,
+  `cpKey` varchar(50) NOT NULL,
   PRIMARY KEY (`userNum`),
-  KEY `cpID` (`cpID`),
-  CONSTRAINT `FK_rootUser_company_data` FOREIGN KEY (`cpID`) REFERENCES `company_data` (`cpID`)
+  KEY `FK_rootuser_company_data` (`cpKey`),
+  CONSTRAINT `FK_rootuser_company_data` FOREIGN KEY (`cpKey`) REFERENCES `company_data` (`cpKey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  sign_data.rootuser 的数据：~1 rows (大约)
+-- 正在导出表  sign_data.rootuser 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `rootuser` DISABLE KEYS */;
-REPLACE INTO `rootuser` (`userNum`, `password`, `cpID`) VALUES
-	('root', 'chuang521', 'sylg123');
+REPLACE INTO `rootuser` (`userNum`, `password`, `cpKey`) VALUES
+	('root', 'chuang521', 'sasfassaww765432gyff'),
+	('zc15734070718', 'chuang521', 'sasfassaww765432gyff');
 /*!40000 ALTER TABLE `rootuser` ENABLE KEYS */;
 
 

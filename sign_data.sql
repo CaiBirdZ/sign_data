@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `company_data` (
 -- 正在导出表  sign_data.company_data 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `company_data` DISABLE KEYS */;
 REPLACE INTO `company_data` (`cpID`, `cpName`, `cpPosLon`, `cpPosLat`, `cpKey`, `cpHQ`) VALUES
-	('sylg123', '沈阳理工', '123.499402', '41.731463', 'sasfassaww765432gyff', '沈阳理工大学'),
+	('sylg123', '沈阳理工', '123.49274933', '41.72514946', 'sasfassaww765432gyff', '沈阳理工大学'),
 	('xx123456', '信息学院', NULL, NULL, 'sasfassaww765432gyff', '沈阳理工大学');
 /*!40000 ALTER TABLE `company_data` ENABLE KEYS */;
 

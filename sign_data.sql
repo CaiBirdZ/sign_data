@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS `company_data` (
 -- 正在导出表  sign_data.company_data 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `company_data` DISABLE KEYS */;
 REPLACE INTO `company_data` (`cpID`, `cpName`, `cpPosLon`, `cpPosLat`, `cpKey`, `cpHQ`) VALUES
-	('sylg123', '沈阳理工', '123.49274933', '41.72514946', 'sasfassaww765432gyff', '沈阳理工大学'),
-	('xx123456', '信息学院', NULL, NULL, 'sasfassaww765432gyff', '沈阳理工大学');
+	('sylg123', '沈阳理工', '123.488892', '41.726366', 'sasfassaww765432gyff', '沈阳理工大学'),
+	('xx123456', '信息学院', '123.48886', '41.72635', 'sasfassaww765432gyff', '沈阳理工大学');
 /*!40000 ALTER TABLE `company_data` ENABLE KEYS */;
 
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `rootuser` (
 -- 正在导出表  sign_data.rootuser 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `rootuser` DISABLE KEYS */;
 REPLACE INTO `rootuser` (`userNum`, `password`, `cpKey`) VALUES
-	('root', 'chuang521', 'sasfassaww765432gyff'),
+	('root', '123456', 'sasfassaww765432gyff'),
 	('zc15734070718', 'chuang521', 'sasfassaww765432gyff');
 /*!40000 ALTER TABLE `rootuser` ENABLE KEYS */;
 
@@ -81,15 +81,17 @@ CREATE TABLE IF NOT EXISTS `sylg123sign_record` (
   CONSTRAINT `FK_sylg123Sign_record_user_info` FOREIGN KEY (`jobNo`) REFERENCES `user_info` (`jobNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  sign_data.sylg123sign_record 的数据：~0 rows (大约)
+-- 正在导出表  sign_data.sylg123sign_record 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `sylg123sign_record` DISABLE KEYS */;
+REPLACE INTO `sylg123sign_record` (`jobNo`, `signDate`, `signTime`, `signOut`, `remark`) VALUES
+	('sylg1403070131', '2017/01/01', '08:00:00', '17:00:00', '异常');
 /*!40000 ALTER TABLE `sylg123sign_record` ENABLE KEYS */;
 
 
 -- 导出  表 sign_data.user_info 结构
 CREATE TABLE IF NOT EXISTS `user_info` (
   `jobNo` varchar(16) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(20) DEFAULT '123456',
   `emName` varchar(20) NOT NULL,
   `department` varchar(20) NOT NULL,
   `emTel` varchar(20) NOT NULL,
@@ -100,10 +102,11 @@ CREATE TABLE IF NOT EXISTS `user_info` (
   CONSTRAINT `FK_user_info_company_data` FOREIGN KEY (`cpID`) REFERENCES `company_data` (`cpID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- 正在导出表  sign_data.user_info 的数据：~1 rows (大约)
+-- 正在导出表  sign_data.user_info 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
 REPLACE INTO `user_info` (`jobNo`, `password`, `emName`, `department`, `emTel`, `email`, `cpID`) VALUES
-	('sylg1403070131', '123456', '张闯', '信息院', '15734070718', '1995090@qq.com', 'sylg123');
+	('sylg1403070131', '123456', '张闯', '信息院', '15734070718', '1995090@qq.com', 'sylg123'),
+	('sylg1564654', '123456', '支持者', '信息院', '15734071565', '11546546@qq.com', 'sylg123');
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
